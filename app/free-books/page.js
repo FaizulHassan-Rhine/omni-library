@@ -7,6 +7,8 @@ import { getLanguage, LANGUAGES } from "@/lib/utils/languages";
 import { cn } from "@/lib/utils/cn";
 import Link from "next/link";
 
+export const maxDuration = 30;
+
 export const metadata = {
   title: "Free Books",
   description: "Read public-domain books from Project Gutenberg in a calm, distraction-free reader.",

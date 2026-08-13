@@ -1,7 +1,5 @@
-import { getTrendingBooks, getClassicBooks, getRecentBooks, getSubjectBooks } from "@/lib/books/searchBooks";
+import { getTrendingBooks, getClassicBooks, getRecentBooks, getSubjectBooks, getFreeBooks } from "@/lib/books/searchBooks";
 import { getFeaturedAuthors } from "@/lib/books/getAuthor";
-import { getPopularGutendexBooks } from "@/lib/api/gutendex";
-import { normalizeGutendexBook } from "@/lib/books/normalizeBook";
 import { CATEGORIES } from "@/lib/utils/categories";
 import { LANGUAGES } from "@/lib/utils/languages";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -59,14 +57,14 @@ export async function AuthorsSection() {
 }
 
 export async function FreeBooksSection() {
-  const data = await getPopularGutendexBooks().catch(() => ({ results: [] }));
-  const books = (data.results || []).slice(0, 12).map(normalizeGutendexBook);
+  const data = await getFreeBooks({ page: 1 }).catch(() => ({ books: [] }));
+  const books = (data.books || []).slice(0, 12);
   return (
     <section>
       <SectionHeader
         eyebrow="Public domain"
         title="Free to read"
-        description="Complete books from Project Gutenberg, ready to open in the Omni Library reader."
+        description="Complete books ready to open in the Omni Library reader — legally available and free."
         href="/free-books"
         actionLabel="Browse free books"
       />

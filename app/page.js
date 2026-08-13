@@ -12,6 +12,8 @@ import {
 } from "@/components/home/HomeSections";
 import { Container } from "@/components/ui/Container";
 
+export const maxDuration = 30;
+
 export default function HomePage() {
   return (
     <>
